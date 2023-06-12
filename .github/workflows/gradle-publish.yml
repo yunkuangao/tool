@@ -19,6 +19,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: 'gradle'
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Publish package
         run:
           ./gradlew :tool-kotlin:build --no-daemon
