@@ -19,12 +19,15 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
           cache: 'gradle'
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-      - name: Publish package
-        run:
-          ./gradlew :build --no-daemon
       - name: Set env
         run: echo "{VERSION}=$(echo ${GITHUB_REF:1})" >> "$GITHUB_ENV"
-      - name: Publish with Gradle
-        run: ./gradlew :publish --no-daemon
+      - name: print env
+        run: echo "${VERSION}"
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - name: Publish package
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
