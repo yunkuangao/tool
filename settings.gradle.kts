@@ -6,6 +6,13 @@ dependencyResolutionManagement {
 
     versionCatalogs {
 
+        repositories {
+            mavenLocal()
+            google()
+            gradlePluginPortal()
+            mavenCentral()
+        }
+
         create("libs") {
 
             val kotlinVersion = extra["kotlinVersion"] as String
