@@ -25,6 +25,6 @@ jobs:
         run:
           ./gradlew :build --no-daemon
       - name: Set env
-        run: echo ::set-env name=VERSION::$(echo ${GITHUB_REF:1})
+        run: echo "{VERSION}=$(echo ${GITHUB_REF:1})" >> "$GITHUB_ENV"
       - name: Publish with Gradle
         run: ./gradlew :publish --no-daemon
