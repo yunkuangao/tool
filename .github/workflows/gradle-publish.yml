@@ -23,8 +23,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Publish package
         run:
-          ./gradlew :tool-kotlin:build --no-daemon
+          ./gradlew :build --no-daemon
       - name: Set env
         run: echo ::set-env name=VERSION::$(echo ${GITHUB_REF:1})
       - name: Publish with Gradle
-        run: ./gradlew :tool-kotlin:publish --no-daemon
+        run: ./gradlew :publish --no-daemon
