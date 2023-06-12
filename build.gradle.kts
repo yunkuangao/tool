@@ -9,10 +9,6 @@ plugins {
 group = "moe.yka"
 version = "0.1.0"
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(libs.kotlin.stdlib)
 
@@ -42,15 +38,6 @@ publishing {
         }
     }
     repositories {
-        // Maven Central
-//        maven {
-//            name = "OSSRH"
-//            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-//            credentials {
-//                username = System.getenv("ORG_GRADLE_PROJECT_sonatypeUsername")
-//                password = System.getenv("ORG_GRADLE_PROJECT_sonatypePassword")
-//            }
-//        }
         // GitHub Release
         maven {
             name = "GitHubPackages"
