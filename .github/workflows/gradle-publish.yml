@@ -25,7 +25,12 @@ jobs:
         run: echo "{VERSION}=$(echo ${GITHUB_REF:1})" >> "$GITHUB_ENV"
       - name: Print env
         run: echo "$VERSION"
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          include: "gradle.properties"
+          find: "githubpassword"
+          replace: ${{ secrets.GITHUB_TOKEN }}
+          regex: false
       - name: Publish with Gradle
         run: ./gradlew :publish --no-daemon
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

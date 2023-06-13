@@ -43,8 +43,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/yunkuangao/tool")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = project.property("GitHubPackagesUsername").toString()
+                password = project.property("GitHubPackagesPassword").toString()
             }
         }
     }
