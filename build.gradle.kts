@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.jvm)
 //    `maven-publish`
     `java-library`
-    alias(libs.plugins.dokka)
+//    alias(libs.plugins.dokka)
     signing
     alias(libs.plugins.publish)
 }
