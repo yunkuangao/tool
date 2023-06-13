@@ -18,19 +18,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          cache: 'gradle'
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: Set env
-        run: echo "{VERSION}=$(echo ${GITHUB_REF:1})" >> "$GITHUB_ENV"
-      - name: Print env
-        run: echo "$VERSION"
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          include: "gradle.properties"
-          find: "githubpassword"
-          replace: ${{ secrets.GITHUB_TOKEN }}
-          regex: false
+        run: echo "{VERSION}=$(echo ${GITHUB_REF:10})" >> "$GITHUB_ENV"
       - name: Publish with Gradle
         run: ./gradlew :publish --no-daemon
+        env:
+          ORG_GRADLE_PROJECT_githubPackagesUsername: ${{ github.actor }}
+          ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.GITHUB_TOKEN }}
