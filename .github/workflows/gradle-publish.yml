@@ -22,8 +22,19 @@ jobs:
         run: chmod +x ./gradlew
       - name: Set env
         run: echo "VERSION=$(echo ${GITHUB_REF:11})" >> "$GITHUB_ENV"
-      - name: Publish with Gradle
-        run: ./gradlew :publishAllPublicationsToGithubRepository --no-daemon
+      - name: Publish to Github with Gradle
+        run: ./gradlew :publishAllPublicationsToGitHubPackagesRepository --no-daemon
         env:
           ORG_GRADLE_PROJECT_githubPackagesUsername: ${{ github.actor }}
           ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.GITHUB_TOKEN }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.signKey }}
+          ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.signKeyId }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.signKeyPassword }}
+      - name: Publish to Maven Central with Gradle
+        run: ./gradlew :publishAllPublicationsToOSSRHRepository --no-daemon
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.mavenUsername }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.mavenPassword }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.signKey }}
+          ORG_GRADLE_PROJECT_signingKeyId: ${{ secrets.signKeyId }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.signKeyPassword }}
