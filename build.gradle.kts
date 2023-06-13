@@ -31,7 +31,7 @@ tasks.withType<JavaCompile> {
 publishing {
     repositories {
         maven {
-            name = "tool"
+            name = "githubPackages"
             url = uri("https://maven.pkg.github.com/yunkuangao/tool")
             credentials(PasswordCredentials::class)
         }
