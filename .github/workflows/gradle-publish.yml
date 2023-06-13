@@ -23,7 +23,7 @@ jobs:
       - name: Set env
         run: echo "{VERSION}=$(echo ${GITHUB_REF:11})" >> "$GITHUB_ENV"
       - name: Publish with Gradle
-        run: ./gradlew :publish --no-daemon
+        run: ./gradlew :publishAllPublicationsToGithubRepository --no-daemon
         env:
           ORG_GRADLE_PROJECT_githubPackagesUsername: ${{ github.actor }}
           ORG_GRADLE_PROJECT_githubPackagesPassword: ${{ secrets.GITHUB_TOKEN }}
