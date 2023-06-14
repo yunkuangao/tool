@@ -26,11 +26,6 @@ java {
     withJavadocJar()
 }
 
-//tasks.sourcesJar {
-//    from(project(":common").sourceSets.main.get().allSource)
-//    from(zipTree("../libs/tinylog-2.5.0/tinylog-api-2.5.0-sources.jar"))
-//}
-
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -83,8 +78,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/yunkuangao/tool")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = System.getenv("ORG_GRADLE_PROJECT_githubPackagesUsername")
+                password = System.getenv("ORG_GRADLE_PROJECT_githubPackagesPassword")
             }
         }
     }
