@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jvm)
     signing
     `maven-publish`
+    `java-library`
 }
 
 group = "moe.yka"
@@ -20,8 +21,16 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
 
-// publish maven repo
+//tasks.sourcesJar {
+//    from(project(":common").sourceSets.main.get().allSource)
+//    from(zipTree("../libs/tinylog-2.5.0/tinylog-api-2.5.0-sources.jar"))
+//}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -30,6 +39,7 @@ publishing {
             version = System.getenv("VERSION")
 
             from(components["java"])
+
 
             pom {
                 name.set("tool")
